@@ -5,6 +5,7 @@
  */
 package vcube;
 
+import org.simgrid.msg.Msg;
 import org.simgrid.msg.Task;
 
 /**
@@ -25,7 +26,20 @@ public class VCubeTask extends Task{
         timestemp = new int[8];
         timestempStatus = new int[8];
     }
-    
+    public void imprimirTimestemp(){
+        String var = "";
+        for(int i = 0; i < timestemp.length; i++){
+            var += timestemp[i]+" ";          
+        }
+        Msg.info("Timestemp:      "+var);
+    }
+    public void imprimirTimestempStatus(){
+        String var = "";
+        for(int i = 0; i < timestempStatus.length; i++){
+            var += timestempStatus[i]+" ";          
+        }
+        Msg.info("TimestempStatus:"+var);
+    }
     public int getPretendente() {
         return pretendente;
     }

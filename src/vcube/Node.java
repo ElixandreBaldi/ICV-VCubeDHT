@@ -79,6 +79,23 @@ public class Node extends org.simgrid.msg.Process {
         
         return retornoCis;
     }
+    public int[] CIS(int i){                     
+        int[] retornoCis = new int[timestemp.length];        
+        int s = clusters;
+        int iRetorno = 0;
+        while( iRetorno < timestemp.length-1){
+            for(int x = 1; x <= s; x++){
+                int[] vetorCis = CIS(i, x);
+                for(int w = 0; w < vetorCis.length; w++){
+                    
+                    retornoCis[iRetorno] = vetorCis[w];
+                    iRetorno++;
+                }
+            }
+        }
+        
+        return retornoCis;
+    }
     
     public int encontrarResponsavel(int v){
         int z = 0;
@@ -179,14 +196,14 @@ public class Node extends org.simgrid.msg.Process {
         for(int i = 0; i < timestemp.length; i++){
             var += timestemp[i]+" ";          
         }
-        Msg.info(""+var);
+        Msg.info("Timestemp:      "+var);
     }
     public void imprimirTimestempStatus(){
         String var = "";
         for(int i = 0; i < timestempStatus.length; i++){
             var += timestempStatus[i]+" ";          
         }
-        Msg.info(""+var);
+        Msg.info("TimestempStatus:"+var);
     }
     @Override
     public void main(String args[])throws MsgException{                
@@ -213,8 +230,36 @@ public class Node extends org.simgrid.msg.Process {
         
         }*/
         
+        
+        if(id == 0)
+            for(int s = 1; s <= 3; s++){
+                for(int i = 0; i < timestemp.length; i++){
+                    int[] cis = CIS(i,s);
+                    for(int j = 0; j < cis.length; j++){
+                        System.out.printf(cis[j]+" ");
+                    }
+                    if(s == 1)
+                        System.out.printf("        ");
+                    else if(s == 2)
+                        System.out.printf("      ");
+                    else if(s == 3)
+                        System.out.printf("  ");
+                }
+                System.out.println("");
+            }
+        
+        
+        
+        
+        
+                
+        
         //for(int y=0;y<50;y++){                
-        do{                        
+        do{                
+            
+            imprimirTimestemp();
+            imprimirTimestempStatus();
+            
             String EnviarPara="";
             int solicitacaoEntrada = 0;
             int confirmacaoEntrada = 0;
@@ -222,7 +267,7 @@ public class Node extends org.simgrid.msg.Process {
                 for(int s = 1; s <= clusters; s++){                                                                 
                     int[] VetorCis =  CIS(id,s);     
                     for(int j = 0; j<VetorCis.length; j++){                
-                        int [] VetorCJs = CIS(VetorCis[j],s);                
+                        int [] VetorCJs = CIS(VetorCis[j], s);                        
                         for(int x=0; x<VetorCJs.length; x++){                                                
                             if(timestemp[VetorCJs[x]]%2 == 0){
                                 if(VetorCJs[x]==id){//Ai vai enviar
@@ -231,8 +276,8 @@ public class Node extends org.simgrid.msg.Process {
                                     VCubeTask N = new VCubeTask("Ocupado?",0,0);                                    
                                     N.setEmissor(args[0]); 
                                     N.setTimestempStatus(timestempStatus);
-                                    N.dsend(envio);
-                                    //Msg.info("Nodo "+id+" contatou "+VetorCis[j]);                                        
+                                    N.dsend(envio);                                    
+                                    Msg.info("Nodo "+id+" contatou "+VetorCis[j]);                                        
                                 }
                                 x=VetorCJs.length;                                                
                             }
@@ -245,7 +290,7 @@ public class Node extends org.simgrid.msg.Process {
                 VCubeTask N = new VCubeTask("Quero Entrar",0,0);
                 N.setEmissor(args[0]);
                 N.dsend(solicitarPara);
-                Msg.info(id+" solicitando entrada ->> "+solicitarPara);                
+                //Msg.info(id+" solicitando entrada ->> "+solicitarPara);                
             }            
             
             waitFor(0.1);        
@@ -271,34 +316,31 @@ public class Node extends org.simgrid.msg.Process {
                     }
                     else if(R.getName().equals("Ocupado?")){  
                         VCubeTask Resposta;
-                        conferirTimestempStatus(R.getTimestempStatus()); 
-                        
+                        conferirTimestempStatus(R.getTimestempStatus());                         
                         if(status == OCUPADO)
                             Resposta = new VCubeTask("Estou Ocupado",0,0);                                                    
                         else
-                            Resposta = new VCubeTask("Estou vazio",0,0);
+                            Resposta = new VCubeTask("Estou vazio",0,0);                        
                         Resposta.setTimestemp(timestemp);
-                        Resposta.setTimestemp(timestempStatus);
+                        Resposta.setTimestempStatus(timestempStatus);
                         Resposta.setEmissor(args[0]);                                                    
-                        Resposta.dsend(R.getEmissor());
+                        Resposta.dsend(R.getEmissor());                        
                     }else if(R.getName().equals("Estou Ocupado") || R.getName().equals("Estou vazio")){//CONFIRMAÇÃO DE RECEBIMENTO                          
                         EnviarPara = EnviarPara.replace(R.getEmissor()+", ", "");
-                        conferirTimestemp(R.getTimestemp());
+                        conferirTimestemp(R.getTimestemp());                        
                         if(timestemp[Integer.parseInt(R.getEmissor())]%2 == 1)
                             timestemp[Integer.parseInt(R.getEmissor())]++; 
                         
-                        if(R.getName().equals("Estou Ocupado")){//Confirmar TimestempStatus
-                            //Msg.info(R.getEmissor()+" disse que esta ocupado");
+                        if(R.getName().equals("Estou Ocupado")){//Confirmar TimestempStatus                            
                             conferirTimestempStatus(R.getTimestempStatus());                        
                             if(timestempStatus[Integer.parseInt(R.getEmissor())]%2 != 0)
                                 timestempStatus[Integer.parseInt(R.getEmissor())]++;
                         }
-                        else{ //Esta vazio
-                            // Msg.info(R.getEmissor()+" disse que esta vazio");
+                        else{ //Esta vazio                            
                             conferirTimestempStatus(R.getTimestempStatus());                        
                             if(timestempStatus[Integer.parseInt(R.getEmissor())]%2 == 0)
                                 timestempStatus[Integer.parseInt(R.getEmissor())]++;
-                        }                             
+                        }                         
                     }                    
                     else if(R.getName().equals("Quero Entrar")){                         
                         VCubeTask Resposta = new VCubeTask("Resposta ao solicitante para entrar na rede",0,0);                        
@@ -308,7 +350,7 @@ public class Node extends org.simgrid.msg.Process {
                         if(responsavel == id)
                             Resposta.setConversarCom(setarNovoProcesso(maisAdequado));
                         else{//delegar inicialização de novo processo                            
-                            Msg.info(id+ "mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
+                            //Msg.info(id+ "mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
                             Resposta.setConversarCom(responsavel+"");
                             Resposta.setPretendente(maisAdequado);
                         }
@@ -327,7 +369,7 @@ public class Node extends org.simgrid.msg.Process {
                                 Resposta.setConversarCom(setarNovoProcesso(maisAdequado));
                             else{//delegar inicialização de novo processo
                                 confirmacaoEntrada++;
-                                Msg.info(id+ "mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
+                                //Msg.info(id+ "mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
                                 Resposta.setConversarCom(responsavel+"");
                                 Resposta.setPretendente(maisAdequado);
                             }
@@ -339,7 +381,7 @@ public class Node extends org.simgrid.msg.Process {
                     }
                     else if(R.getName().equals("Resposta ao solicitante para entrar na rede")){ 
                         if(R.getConversarCom().equals("Pode dormir")){                                
-                            Msg.info("  Entrei, agora vou ir em bora");
+                            //Msg.info("  Entrei, agora vou ir em bora");
                             status = MORTO;                                    
                         }                            
                         else if(!R.getConversarCom().equals(solicitarPara)){
@@ -348,7 +390,7 @@ public class Node extends org.simgrid.msg.Process {
                             N.setEmissor(args[0]);                               
                             N.setPretendente(R.getPretendente());
                             N.dsend(solicitarPara);
-                            Msg.info(id+"  confirmando entrada ->>"+solicitarPara);
+                            //Msg.info(id+"  confirmando entrada ->>"+solicitarPara);
                         }
                         else{
                             System.out.println("ERRRRROOOOOOOO   "+R.getConversarCom());                            
@@ -370,11 +412,8 @@ public class Node extends org.simgrid.msg.Process {
                        if(timestempStatus[valor] % 2 == 0 )
                           timestempStatus[valor]++;
                     }
-                }
-                //imprimirTimestemp();
-                //imprimirTimestempStatus();
+                }                
             }        
-        }while(true);
-        
+        }while(true);       
     }
 }
