@@ -25,8 +25,8 @@ public class Node extends org.simgrid.msg.Process {
     String solicitarPara;
     final int VAZIO = 0;
     final int OCUPADO = 1;
-    final int SOLICITANTE = 2;
-    final int MORTO = 3; //MUDAR DEPOIS
+    boolean SOLICITANTE;
+    //final int MORTO = 3; //MUDAR DEPOIS
     
     public Node(Host hostname, String name, String[] args) throws HostNotFoundException {
         super(hostname,name,args);
@@ -51,12 +51,10 @@ public class Node extends org.simgrid.msg.Process {
             status = OCUPADO;            
         }
         else if(id <= 7){
-            status = VAZIO;                 
-        }
-        else{
-            status = SOLICITANTE;
+            status = VAZIO;
+            SOLICITANTE = true;
             solicitarPara = "0";
-        }
+        }        
         String var = "";
         for(int i = 0; i < timestempStatus.length; i++){                            
             var += timestempStatus[i]+" ";          
@@ -176,18 +174,19 @@ public class Node extends org.simgrid.msg.Process {
             if(timestemp[i] < timestempComparado[i] && i!=id)
                 timestemp[i] = timestempComparado[i];  
     }
-    public void conferirTimestempStatus(int[] timestempStatusComparado){
+    public void conferirTimestempStatus(int[] timestempStatusComparado){        
         for(int i = 0; i < timestempStatus.length; i++)
             if(timestempStatusComparado[i] > timestempStatus[i] && i != id)
-                timestempStatus[i] = timestempStatusComparado[i]; 
+                timestempStatus[i] = timestempStatusComparado[i];        
     }
     public String setarNovoProcesso(int maisAdequado){
         VCubeTask NovoParticipante = new VCubeTask("Voce vai entrar",0,0);  
         Msg.info(id+" mandando "+maisAdequado+" entrar");
         NovoParticipante.setEmissor(id+"");                                                                                                
         NovoParticipante.setTimestemp(timestemp);
-        NovoParticipante.setTimestempStatus(timestempStatus);
-        timestempStatus[maisAdequado]++;
+        NovoParticipante.setTimestempStatus(timestempStatus);        
+        if(timestempStatus[maisAdequado]%2 != 0)
+            timestempStatus[maisAdequado]++;        
         NovoParticipante.dsend(""+maisAdequado);
         return "Pode dormir";
     }
@@ -204,6 +203,18 @@ public class Node extends org.simgrid.msg.Process {
             var += timestempStatus[i]+" ";          
         }
         Msg.info("TimestempStatus:"+var);
+    }
+    public void solicitarEntrada(String solicitar){
+        VCubeTask N = new VCubeTask("Quero Entrar",0,0);
+        N.setEmissor(""+id);
+        N.dsend(solicitar);
+    }
+    public boolean existePossivelLocal(){
+        for(int i = 0; i < timestemp.length; i++)
+            if(timestemp[i]%2 == 0 && timestempStatus[i]%2 != 0 && i != id)
+                return true;
+                
+        return false;
     }
     @Override
     public void main(String args[])throws MsgException{                
@@ -231,7 +242,7 @@ public class Node extends org.simgrid.msg.Process {
         }*/
         
         
-        if(id == 0)
+        /*if(id == 0)
             for(int s = 1; s <= 3; s++){
                 for(int i = 0; i < timestemp.length; i++){
                     int[] cis = CIS(i,s);
@@ -247,66 +258,64 @@ public class Node extends org.simgrid.msg.Process {
                 }
                 System.out.println("");
             }
-        
+        */
         
         
         
         
                 
         
-        //for(int y=0;y<50;y++){                
-        do{                
+        //for(int y=0;y<50;y++){    
+        int contador = -1;
+        
+        do{ 
+            contador++;               
             
-            imprimirTimestemp();
-            imprimirTimestempStatus();
             
-            String EnviarPara="";
-            int solicitacaoEntrada = 0;
-            int confirmacaoEntrada = 0;
-            if(status != SOLICITANTE && status != MORTO){ //Contactar nodos (VCube)                                 
-                for(int s = 1; s <= clusters; s++){                                                                 
-                    int[] VetorCis =  CIS(id,s);     
-                    for(int j = 0; j<VetorCis.length; j++){                
-                        int [] VetorCJs = CIS(VetorCis[j], s);                        
-                        for(int x=0; x<VetorCJs.length; x++){                                                
-                            if(timestemp[VetorCJs[x]]%2 == 0){
-                                if(VetorCJs[x]==id){//Ai vai enviar
-                                    EnviarPara += String.valueOf(VetorCis[j])+", ";
-                                    String envio = ""+VetorCis[j];
-                                    VCubeTask N = new VCubeTask("Ocupado?",0,0);                                    
-                                    N.setEmissor(args[0]); 
-                                    N.setTimestempStatus(timestempStatus);
-                                    N.dsend(envio);                                    
-                                    Msg.info("Nodo "+id+" contatou "+VetorCis[j]);                                        
-                                }
-                                x=VetorCJs.length;                                                
+            //imprimirTimestemp();
+            //imprimirTimestempStatus();
+            
+            String EnviarPara="";            
+            
+            for(int s = 1; s <= clusters; s++){//Contactar nodos (VCube)                                                                 
+                int[] VetorCis =  CIS(id,s);     
+                for(int j = 0; j<VetorCis.length; j++){                
+                    int [] VetorCJs = CIS(VetorCis[j], s);                        
+                    for(int x=0; x<VetorCJs.length; x++){                                                
+                        if(timestemp[VetorCJs[x]]%2 == 0){
+                            if(VetorCJs[x]==id){//Ai vai enviar
+                                EnviarPara += String.valueOf(VetorCis[j])+", ";
+                                String envio = ""+VetorCis[j];
+                                VCubeTask N = new VCubeTask("Ocupado?",0,0);                                    
+                                N.setEmissor(args[0]); 
+                                N.setTimestempStatus(timestempStatus);
+                                N.dsend(envio);                                    
+                                //Msg.info("Nodo "+id+" contatou "+VetorCis[j]);                                        
                             }
-                        }                                
-                    } 
-                }
-            }            
+                            x=VetorCJs.length;                                                
+                        }
+                    }                                
+                } 
+            }                      
             
-            if(status == SOLICITANTE){
-                VCubeTask N = new VCubeTask("Quero Entrar",0,0);
-                N.setEmissor(args[0]);
-                N.dsend(solicitarPara);
-                //Msg.info(id+" solicitando entrada ->> "+solicitarPara);                
+            if(SOLICITANTE){
+                solicitarEntrada(solicitarPara);                
+                Msg.info(id+" solicitando entrada ->> "+solicitarPara);                     
             }            
             
             waitFor(0.1);        
             
-            VCubeTask R = null;
-            do{            
+            VCubeTask R = null;            
+            do{                            
                 try{                                    
                     R = (VCubeTask) Task.receive(args[0],1);                        
                     
                     if(R.getName().equals("Voce vai entrar")){
                         status = OCUPADO;  
                         Msg.info(id+" Entreeei");
-                        for(int i = 0; i<timestemp.length; i++){
-                            timestemp[i] = R.getTimestemp()[i]; 
-                            timestempStatus[i] = R.getTimestempStatus()[i];
-                        }                        
+                        
+                        conferirTimestemp(R.getTimestemp());
+                        conferirTimestempStatus(R.getTimestempStatus());
                         if(timestemp[id]%2 != 0){
                             timestemp[id]++;                            
                         }
@@ -342,47 +351,53 @@ public class Node extends org.simgrid.msg.Process {
                                 timestempStatus[Integer.parseInt(R.getEmissor())]++;
                         }                         
                     }                    
-                    else if(R.getName().equals("Quero Entrar")){                         
+                    else if(R.getName().equals("Quero Entrar")){                          
                         VCubeTask Resposta = new VCubeTask("Resposta ao solicitante para entrar na rede",0,0);                        
-                        int maisAdequado = encontrarMaisAdequado();
-                        int responsavel = encontrarResponsavel(maisAdequado);
-                        
-                        if(responsavel == id)
-                            Resposta.setConversarCom(setarNovoProcesso(maisAdequado));
-                        else{//delegar inicialização de novo processo                            
-                            //Msg.info(id+ "mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
-                            Resposta.setConversarCom(responsavel+"");
-                            Resposta.setPretendente(maisAdequado);
+                        if(existePossivelLocal()){
+                            int maisAdequado = encontrarMaisAdequado();
+                            int responsavel = encontrarResponsavel(maisAdequado);
+
+                            if(responsavel == id)                            
+                                Resposta.setConversarCom(setarNovoProcesso(maisAdequado));                            
+                            else{//delegar inicialização de novo processo                            
+                                Msg.info(id+ " mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
+                                Resposta.setConversarCom(responsavel+"");
+                                Resposta.setPretendente(maisAdequado);                                
+                            }        
+                        }else{                            
+                            Resposta.setConversarCom(id+"");
                         }
                         Resposta.setEmissor(args[0]);                                
                         Resposta.dsend(R.getEmissor());                        
                     }
-                    else if(R.getName().equals("Confirmacao de Entrada") && confirmacaoEntrada == 0){
+                    else if(R.getName().equals("Confirmacao de Entrada")){
                         int pretendente = R.getPretendente();
-                        VCubeTask Resposta = new VCubeTask("Resposta ao solicitante para entrar na rede",0,0);                                                
+                        VCubeTask Resposta = new VCubeTask("Resposta ao solicitante para entrar na rede",0,0);   
+                        Msg.info(id+" analisando se o pretendente "+pretendente+" pode ser ocupado pelo "+R.getEmissor());                        
                         if(timestemp[pretendente] % 2 == 0 && timestempStatus[pretendente]%2 != 0)                            
-                            Resposta.setConversarCom(setarNovoProcesso(pretendente));
+                            Resposta.setConversarCom(setarNovoProcesso(pretendente));                        
                         else{
-                            int maisAdequado = encontrarMaisAdequado();
-                            int responsavel = encontrarResponsavel(maisAdequado);
-                            if(responsavel == id)                                
-                                Resposta.setConversarCom(setarNovoProcesso(maisAdequado));
-                            else{//delegar inicialização de novo processo
-                                confirmacaoEntrada++;
-                                //Msg.info(id+ "mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);
-                                Resposta.setConversarCom(responsavel+"");
-                                Resposta.setPretendente(maisAdequado);
+                            if(existePossivelLocal()){
+                                int maisAdequado = encontrarMaisAdequado();
+                                int responsavel = encontrarResponsavel(maisAdequado);
+                                if(responsavel == id)                                                    
+                                    Resposta.setConversarCom(setarNovoProcesso(maisAdequado));                                    
+                                else{//delegar inicialização de novo processo                                    
+                                    Msg.info(id+ " mandando "+R.getEmissor()+" pedir para "+responsavel+" confirmacao do nodo "+maisAdequado);                                    
+                                    Resposta.setConversarCom(responsavel+"");
+                                    Resposta.setPretendente(maisAdequado);
+                                }    
+                            }else{                                
+                                Resposta.setConversarCom(id+"");
                             }
                         }
-                        
                         Resposta.setEmissor(args[0]);                                
-                        Resposta.dsend(R.getEmissor());
-                        
+                        Resposta.dsend(R.getEmissor());                        
                     }
                     else if(R.getName().equals("Resposta ao solicitante para entrar na rede")){ 
                         if(R.getConversarCom().equals("Pode dormir")){                                
                             //Msg.info("  Entrei, agora vou ir em bora");
-                            status = MORTO;                                    
+                            SOLICITANTE = false;                                    
                         }                            
                         else if(!R.getConversarCom().equals(solicitarPara)){
                             solicitarPara = R.getConversarCom();                            
@@ -391,29 +406,22 @@ public class Node extends org.simgrid.msg.Process {
                             N.setPretendente(R.getPretendente());
                             N.dsend(solicitarPara);
                             //Msg.info(id+"  confirmando entrada ->>"+solicitarPara);
-                        }
-                        else{
-                            System.out.println("ERRRRROOOOOOOO   "+R.getConversarCom());                            
-                        }                    
-                        waitFor(1);
+                        }                                                                                             
                     }
                 }catch(Exception e){                       
                     R = null;
                 }
             }while(R != null);       
-            
-                
-            if(status != SOLICITANTE && status != MORTO){
-                String nodosFalhos[] = EnviarPara.split(",");                       
-                for(int i = 0; i < nodosFalhos.length-1; i++){                                                                
-                    int valor = Integer.parseInt(nodosFalhos[i].trim());                
-                    if(timestemp[valor]%2 == 0 && valor!=id){
-                       timestemp[valor]++; 
-                       if(timestempStatus[valor] % 2 == 0 )
-                          timestempStatus[valor]++;
-                    }
-                }                
-            }        
+                                        
+            String nodosFalhos[] = EnviarPara.split(",");                       
+            for(int i = 0; i < nodosFalhos.length-1; i++){                                                                
+                int valor = Integer.parseInt(nodosFalhos[i].trim());                
+                if(timestemp[valor]%2 == 0 && valor!=id){
+                   timestemp[valor]++; 
+                   if(timestempStatus[valor] % 2 == 0 )
+                      timestempStatus[valor]++;                   
+                }
+            }                                  
         }while(true);       
     }
 }
