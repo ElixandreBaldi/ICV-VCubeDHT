@@ -6,6 +6,9 @@
 package vcube;
 
 import static java.lang.Math.pow;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import org.simgrid.msg.Host;
 import org.simgrid.msg.HostNotFoundException;
 import org.simgrid.msg.Msg;
@@ -26,11 +29,12 @@ public class Node extends org.simgrid.msg.Process {
     final int VAZIO = 0;
     final int OCUPADO = 1;
     boolean SOLICITANTE;
-    //final int MORTO = 3; //MUDAR DEPOIS
+    VetorBytes[] arquivos; /// a partir daqui!!!
     
     public Node(Host hostname, String name, String[] args) throws HostNotFoundException {
         super(hostname,name,args);
-        id = Integer.parseInt(args[0]);                 
+        id = Integer.parseInt(args[0]);  
+        arquivos = new VetorBytes[0];
         timestemp = new int[8];
         timestempStatus = new int[8];
         clusters = (int) (Math.log(8) / Math.log(2));
@@ -58,11 +62,42 @@ public class Node extends org.simgrid.msg.Process {
         String var = "";
         for(int i = 0; i < timestempStatus.length; i++){                            
             var += timestempStatus[i]+" ";          
-        }
-        //if(id == 0)
-            //Msg.info("construtor:   "+var); 
+        }        
         
-    }            
+    }     
+    public int lookup ( byte[] k ) {                
+        BigInteger valor = new BigInteger(k);
+        BigInteger dois = new BigInteger("2");
+        
+        BigInteger v = valor.divide(dois.pow(160-clusters)); 
+        System.out.println("A chave pertence ao nodo "+v);
+        int i = encontrarResponsavel(v.intValue());
+        return i;
+    }
+    
+    public int get (String chave) {        
+        return lookup(gerarHash(chave, "SHA-1"));
+    }
+    private static String stringHexa(byte[] bytes) {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            int parteAlta = ((bytes[i] >> 4) & 0xf) << 4;
+            int parteBaixa = bytes[i] & 0xf;
+            if (parteAlta == 0) s.append('0');
+                s.append(Integer.toHexString(parteAlta | parteBaixa));
+        }
+        return s.toString();
+    }
+
+    public static byte[] gerarHash(String frase, String algoritmo) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(algoritmo);
+            md.update(frase.getBytes());
+            return md.digest();
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
+    }
     public int[] CIS(int i, int s){             
         int k = (int) pow(2,s)/2; // QTD DE RETORNOS
         int[] retornoCis = new int[k];
@@ -182,6 +217,7 @@ public class Node extends org.simgrid.msg.Process {
     public String setarNovoProcesso(int maisAdequado){
         VCubeTask NovoParticipante = new VCubeTask("Voce vai entrar",0,0);  
         Msg.info(id+" mandando "+maisAdequado+" entrar");
+        SOLICITANTE = false;
         NovoParticipante.setEmissor(id+"");                                                                                                
         NovoParticipante.setTimestemp(timestemp);
         NovoParticipante.setTimestempStatus(timestempStatus);        
@@ -206,6 +242,7 @@ public class Node extends org.simgrid.msg.Process {
     }
     public void solicitarEntrada(String solicitar){
         VCubeTask N = new VCubeTask("Quero Entrar",0,0);
+        SOLICITANTE = false;
         N.setEmissor(""+id);
         N.dsend(solicitar);
     }
@@ -218,7 +255,7 @@ public class Node extends org.simgrid.msg.Process {
     }
     @Override
     public void main(String args[])throws MsgException{                
-        String dorm =""; 
+        String dorm ="";
         
         /*if(id == 0){
             //timestempStatus[1]++;
@@ -406,7 +443,10 @@ public class Node extends org.simgrid.msg.Process {
                             N.setPretendente(R.getPretendente());
                             N.dsend(solicitarPara);
                             //Msg.info(id+"  confirmando entrada ->>"+solicitarPara);
-                        }                                                                                             
+                        }    
+                        else{
+                            SOLICITANTE = true;
+                        }
                     }
                 }catch(Exception e){                       
                     R = null;
@@ -421,7 +461,7 @@ public class Node extends org.simgrid.msg.Process {
                    if(timestempStatus[valor] % 2 == 0 )
                       timestempStatus[valor]++;                   
                 }
-            }                                  
+            }                    
         }while(true);       
     }
 }
