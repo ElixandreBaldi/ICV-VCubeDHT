@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">			
+	<process host="0" start_time="0" function="vcube.Node">
+		<argument value="0"/>		       
+	</process>
+	<process host="1" start_time="0" function="vcube.Node">
+		<argument value="1"/>       
+	</process>
+	<process host="2" start_time="0" function="vcube.Node">
+		<argument value="2"/>
+	</process>
+	<process host="3" start_time="0" function="vcube.Node">
+		<argument value="3"/>    
+	</process>
+	<process host="4" start_time="0" function="vcube.Node">
+		<argument value="4"/> 
+		<argument value="esse ehskgjjhkkjhhkk um texto"/>
+	</process>
+	<process host="5" start_time="0" function="vcube.Node">
+		<argument value="5"/>       
+	</process>
+	<process host="6" start_time="0" function="vcube.Node">
+		<argument value="6"/>       
+		<argument value="esse ehskgjjhkkjhhkk um texto"/>
+	</process>
+	<process host="7" start_time="0" function="vcube.Node">
+		<argument value="7"/>       
+	</process>	
+</platform>

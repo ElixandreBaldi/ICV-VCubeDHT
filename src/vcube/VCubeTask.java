@@ -16,15 +16,40 @@ public class VCubeTask extends Task{
     private int[] timestemp;
     private int[] timestempStatus;    
     private int pretendente;
+    private byte[] hash;
+    private String arquivo;
+    private final int QTDNODOS = 16;
 
+    public String getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(String arquivo) {
+        this.arquivo = arquivo;
+    }
     private String emissor;
-    private String conversarCom;  
+    private String conversarCom; 
+    private boolean flagArquivo;
+    
+    public byte[] getHash() {
+        return hash;
+    }
+
+    public void setHash(byte[] hash) {
+        this.hash = new byte[hash.length];
+        for(int i = 0; i < hash.length; i++)
+            this.hash[i] = hash[i];
+    }
+    
+
+     
     
 
     public VCubeTask(String name, double flopsAmount, double bytesAmount){
         super(name, flopsAmount,bytesAmount);
-        timestemp = new int[8];
-        timestempStatus = new int[8];
+        timestemp = new int[QTDNODOS];
+        timestempStatus = new int[QTDNODOS];
+        flagArquivo = false;
     }
     public void imprimirTimestemp(){
         String var = "";
@@ -81,4 +106,15 @@ public class VCubeTask extends Task{
         for(int i = 0; i<timestemp.length; i++)
             this.timestemp[i] = timestemp[i];
     }        
+
+    public void setflagArquivo() {
+        flagArquivo = true;
+    }
+
+    public boolean getFlagArquivo() {
+        if(flagArquivo)
+            return true;
+        else
+            return false;
+    }
 }

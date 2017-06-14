@@ -1,0 +1,200 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">
+	<AS id="AS_2" routing="Dijkstra">
+		<host id="0" speed="137.333Mf" />
+		<host id="1" speed="137.333Mf" />
+		<host id="2" speed="137.333Mf" />
+		<host id="3" speed="137.333Mf" />
+		<host id="4" speed="137.333Mf" />
+		<host id="5" speed="137.333Mf" />
+		<host id="6" speed="137.333Mf" />
+		<host id="7" speed="137.333Mf" />
+		<host id="8" speed="137.333Mf" />
+		<host id="9" speed="137.333Mf" />
+		<host id="10" speed="137.333Mf" />
+		<host id="11" speed="137.333Mf" />
+		<host id="12" speed="137.333Mf" />
+		<host id="13" speed="137.333Mf" />
+		<host id="14" speed="137.333Mf" />
+		<host id="15" speed="137.333Mf" />
+		<host id="16" speed="137.333Mf" />
+		<host id="17" speed="137.333Mf" />
+		<host id="18" speed="137.333Mf" />
+		<host id="19" speed="137.333Mf" />
+		<host id="20" speed="137.333Mf" />
+		<host id="21" speed="137.333Mf" />
+		<host id="22" speed="137.333Mf" />
+		<host id="23" speed="137.333Mf" />
+		<host id="24" speed="137.333Mf" />
+		<host id="25" speed="137.333Mf" />
+		<host id="26" speed="137.333Mf" />
+		<host id="27" speed="137.333Mf" />
+		<host id="28" speed="137.333Mf" />
+		<host id="29" speed="137.333Mf" />
+		<host id="30" speed="137.333Mf" />
+		<host id="31" speed="137.333Mf" />
+		<host id="32" speed="137.333Mf" />
+		<host id="33" speed="137.333Mf" />
+		<host id="34" speed="137.333Mf" />
+		<host id="35" speed="137.333Mf" />
+		<host id="36" speed="137.333Mf" />
+		<host id="37" speed="137.333Mf" />
+		<host id="38" speed="137.333Mf" />
+		<host id="39" speed="137.333Mf" />
+		<host id="40" speed="137.333Mf" />
+		<host id="41" speed="137.333Mf" />
+		<host id="42" speed="137.333Mf" />
+		<host id="43" speed="137.333Mf" />
+		<host id="44" speed="137.333Mf" />
+		<host id="45" speed="137.333Mf" />
+		<host id="46" speed="137.333Mf" />
+		<host id="47" speed="137.333Mf" />
+		<host id="48" speed="137.333Mf" />
+		<host id="49" speed="137.333Mf" />
+		<host id="50" speed="137.333Mf" />
+		<host id="51" speed="137.333Mf" />
+		<host id="52" speed="137.333Mf" />
+		<host id="53" speed="137.333Mf" />
+		<host id="54" speed="137.333Mf" />
+		<host id="55" speed="137.333Mf" />
+		<host id="56" speed="137.333Mf" />
+		<host id="57" speed="137.333Mf" />
+		<host id="58" speed="137.333Mf" />
+		<host id="59" speed="137.333Mf" />
+		<host id="60" speed="137.333Mf" />
+		<host id="61" speed="137.333Mf" />
+		<host id="62" speed="137.333Mf" />
+		<host id="63" speed="137.333Mf" />
+		<link id="10" bandwidth="3.430125MBps" latency="536.941us"/>		
+		<router id="central_router"/>
+		<route src="central_router" dst="0" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="0" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="1" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="1" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="2" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="2" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="3" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="3" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="4" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="4" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="5" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="5" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="6" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="6" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="7" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="7" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="8" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="8" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="9" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="9" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="10" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="10" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="11" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="11" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="12" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="12" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="13" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="13" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="14" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="14" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="15" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="15" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="16" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="16" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="17" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="17" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="18" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="18" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="19" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="19" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="20" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="20" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="21" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="21" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="22" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="22" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="23" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="23" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="24" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="24" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="25" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="25" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="26" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="26" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="27" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="27" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="28" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="28" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="29" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="29" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="30" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="30" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="31" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="31" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="32" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="32" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="33" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="33" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="34" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="34" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="35" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="35" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="36" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="36" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="37" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="37" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="38" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="38" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="39" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="39" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="40" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="40" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="41" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="41" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="42" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="42" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="43" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="43" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="44" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="44" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="45" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="45" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="46" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="46" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="47" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="47" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="48" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="48" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="49" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="49" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="50" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="50" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="51" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="51" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="52" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="52" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="53" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="53" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="54" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="54" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="55" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="55" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="56" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="56" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="57" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="57" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="58" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="58" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="59" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="59" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="60" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="60" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="61" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="61" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="62" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="62" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="63" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="63" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+	</AS>
+</platform>

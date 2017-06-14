@@ -1,0 +1,197 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">
+	<process host="0" start_time="0" function="vcube.Node">
+		<argument value="0"/>		       
+	</process>
+	<process host="1" start_time="0" function="vcube.Node">
+		<argument value="1"/>		       
+	</process>
+	<process host="2" start_time="0" function="vcube.Node">
+		<argument value="2"/>		       
+	</process>
+	<process host="3" start_time="0" function="vcube.Node">
+		<argument value="3"/>		       
+	</process>
+	<process host="4" start_time="0" function="vcube.Node">
+		<argument value="4"/>		       
+	</process>
+	<process host="5" start_time="0" function="vcube.Node">
+		<argument value="5"/>		       
+	</process>
+	<process host="6" start_time="0" function="vcube.Node">
+		<argument value="6"/>		       
+	</process>
+	<process host="7" start_time="0" function="vcube.Node">
+		<argument value="7"/>		       
+	</process>
+	<process host="8" start_time="0" function="vcube.Node">
+		<argument value="8"/>		       
+	</process>
+	<process host="9" start_time="0" function="vcube.Node">
+		<argument value="9"/>		       
+	</process>
+	<process host="10" start_time="0" function="vcube.Node">
+		<argument value="10"/>		       
+	</process>
+	<process host="11" start_time="0" function="vcube.Node">
+		<argument value="11"/>		       
+	</process>
+	<process host="12" start_time="0" function="vcube.Node">
+		<argument value="12"/>		       
+	</process>
+	<process host="13" start_time="0" function="vcube.Node">
+		<argument value="13"/>		       
+	</process>
+	<process host="14" start_time="0" function="vcube.Node">
+		<argument value="14"/>		       
+	</process>
+	<process host="15" start_time="0" function="vcube.Node">
+		<argument value="15"/>		       
+	</process>
+	<process host="16" start_time="0" function="vcube.Node">
+		<argument value="16"/>		       
+	</process>
+	<process host="17" start_time="0" function="vcube.Node">
+		<argument value="17"/>		       
+	</process>
+	<process host="18" start_time="0" function="vcube.Node">
+		<argument value="18"/>		       
+	</process>
+	<process host="19" start_time="0" function="vcube.Node">
+		<argument value="19"/>		       
+	</process>
+	<process host="20" start_time="0" function="vcube.Node">
+		<argument value="20"/>		       
+	</process>
+	<process host="21" start_time="0" function="vcube.Node">
+		<argument value="21"/>		       
+	</process>
+	<process host="22" start_time="0" function="vcube.Node">
+		<argument value="22"/>		       
+	</process>
+	<process host="23" start_time="0" function="vcube.Node">
+		<argument value="23"/>		       
+	</process>
+	<process host="24" start_time="0" function="vcube.Node">
+		<argument value="24"/>		       
+	</process>
+	<process host="25" start_time="0" function="vcube.Node">
+		<argument value="25"/>		       
+	</process>
+	<process host="26" start_time="0" function="vcube.Node">
+		<argument value="26"/>		       
+	</process>
+	<process host="27" start_time="0" function="vcube.Node">
+		<argument value="27"/>		       
+	</process>
+	<process host="28" start_time="0" function="vcube.Node">
+		<argument value="28"/>		       
+	</process>
+	<process host="29" start_time="0" function="vcube.Node">
+		<argument value="29"/>		       
+	</process>
+	<process host="30" start_time="0" function="vcube.Node">
+		<argument value="30"/>		       
+	</process>
+	<process host="31" start_time="0" function="vcube.Node">
+		<argument value="31"/>		       
+	</process>
+	<process host="32" start_time="0" function="vcube.Node">
+		<argument value="32"/>		       
+	</process>
+	<process host="33" start_time="0" function="vcube.Node">
+		<argument value="33"/>		       
+	</process>
+	<process host="34" start_time="0" function="vcube.Node">
+		<argument value="34"/>		       
+	</process>
+	<process host="35" start_time="0" function="vcube.Node">
+		<argument value="35"/>		       
+	</process>
+	<process host="36" start_time="0" function="vcube.Node">
+		<argument value="36"/>		       
+	</process>
+	<process host="37" start_time="0" function="vcube.Node">
+		<argument value="37"/>		       
+	</process>
+	<process host="38" start_time="0" function="vcube.Node">
+		<argument value="38"/>		       
+	</process>
+	<process host="39" start_time="0" function="vcube.Node">
+		<argument value="39"/>		       
+	</process>
+	<process host="40" start_time="0" function="vcube.Node">
+		<argument value="40"/>		       
+	</process>
+	<process host="41" start_time="0" function="vcube.Node">
+		<argument value="41"/>		       
+	</process>
+	<process host="42" start_time="0" function="vcube.Node">
+		<argument value="42"/>		       
+	</process>
+	<process host="43" start_time="0" function="vcube.Node">
+		<argument value="43"/>		       
+	</process>
+	<process host="44" start_time="0" function="vcube.Node">
+		<argument value="44"/>		       
+	</process>
+	<process host="45" start_time="0" function="vcube.Node">
+		<argument value="45"/>		       
+	</process>
+	<process host="46" start_time="0" function="vcube.Node">
+		<argument value="46"/>		       
+	</process>
+	<process host="47" start_time="0" function="vcube.Node">
+		<argument value="47"/>		       
+		<argument value="texto para simulaçao"/>
+	</process>
+	<process host="48" start_time="0" function="vcube.Node">
+		<argument value="48"/>		       
+	</process>
+	<process host="49" start_time="0" function="vcube.Node">
+		<argument value="49"/>		       
+	</process>
+	<process host="50" start_time="0" function="vcube.Node">
+		<argument value="50"/>		       
+	</process>
+	<process host="51" start_time="0" function="vcube.Node">
+		<argument value="51"/>		       
+	</process>
+	<process host="52" start_time="0" function="vcube.Node">
+		<argument value="52"/>		       
+	</process>
+	<process host="53" start_time="0" function="vcube.Node">
+		<argument value="53"/>		       
+	</process>
+	<process host="54" start_time="0" function="vcube.Node">
+		<argument value="54"/>		       
+	</process>
+	<process host="55" start_time="0" function="vcube.Node">
+		<argument value="55"/>		       
+	</process>
+	<process host="56" start_time="0" function="vcube.Node">
+		<argument value="56"/>		       
+	</process>
+	<process host="57" start_time="0" function="vcube.Node">
+		<argument value="57"/>		       
+	</process>
+	<process host="58" start_time="0" function="vcube.Node">
+		<argument value="58"/>		       
+	</process>
+	<process host="59" start_time="0" function="vcube.Node">
+		<argument value="59"/>		       
+	</process>
+	<process host="60" start_time="0" function="vcube.Node">
+		<argument value="60"/>		       
+	</process>
+	<process host="61" start_time="0" function="vcube.Node">
+		<argument value="61"/>		       
+	</process>
+	<process host="62" start_time="0" function="vcube.Node">
+		<argument value="62"/>		       
+	</process>
+	<process host="63" start_time="0" function="vcube.Node">
+		<argument value="63"/>		       
+	</process>
+</platform>

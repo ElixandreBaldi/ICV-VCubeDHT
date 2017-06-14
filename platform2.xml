@@ -1,0 +1,34 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">
+	<AS id="AS_2" routing="Dijkstra">
+		<host id="0" speed="137.333Mf" />
+		<host id="1" speed="137.333Mf" />
+		<host id="2" speed="137.333Mf" />
+		<host id="3" speed="137.333Mf" />
+		<host id="4" speed="137.333Mf" />
+		<host id="5" speed="137.333Mf" />
+		<host id="6" speed="137.333Mf" />
+		<host id="7" speed="137.333Mf" />
+
+		<link id="10" bandwidth="3.430125MBps" latency="536.941us"/>		
+		<router id="central_router"/>	
+
+		<route src="central_router" dst="0" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="0" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="1" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="1" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="2" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="2" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="3" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="3" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="4" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="4" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="5" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="5" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="6" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="6" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="central_router" dst="7" symmetrical="NO"><link_ctn id="10"/></route>
+		<route src="7" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
+	</AS>
+</platform>

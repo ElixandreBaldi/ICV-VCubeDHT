@@ -10,21 +10,40 @@ package vcube;
  * @author elixandre
  */
 class VetorBytes {
-    private byte[] arquivo;
+    private byte[] hash;
+    private String arquivo;
+    private int dono;
 
-    VetorBytes(byte[] arquivo){
-        this.arquivo = new byte[arquivo.length];
-        
-        for(int i = 0; i < arquivo.length; i++){
-            this.arquivo[i] = arquivo[i];
-        }
+    public int getDono() {
+        return dono;
     }
-    
-    public void setArquivo(byte[] arquivo) {
+
+    public void setDono(int dono) {
+        this.dono = dono;
+    }
+
+    public String getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(String arquivo) {
         this.arquivo = arquivo;
     }
 
-    public byte[] getArquivo() {
-        return arquivo;
+    VetorBytes(byte[] hash, String arquivo, int id){
+        dono = id;
+        this.hash = new byte[hash.length];
+        this.arquivo = arquivo;
+        for(int i = 0; i < hash.length; i++){
+            this.hash[i] = hash[i];
+        }
+    }
+    
+    public void setHash(byte[] arquivo) {
+        this.hash = arquivo;
+    }
+
+    public byte[] getHash() {
+        return hash;
     }
 }
