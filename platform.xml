@@ -10,14 +10,6 @@
 		<host id="5" speed="137.333Mf" />
 		<host id="6" speed="137.333Mf" />
 		<host id="7" speed="137.333Mf" />
-		<host id="8" speed="137.333Mf" />
-		<host id="9" speed="137.333Mf" />
-		<host id="10" speed="137.333Mf" />
-		<host id="11" speed="137.333Mf" />
-		<host id="12" speed="137.333Mf" />
-		<host id="13" speed="137.333Mf" />
-		<host id="14" speed="137.333Mf" />
-		<host id="15" speed="137.333Mf" />
 		<link id="10" bandwidth="3.430125MBps" latency="536.941us"/>		
 		<router id="central_router"/>
 		<route src="central_router" dst="0" symmetrical="NO"><link_ctn id="10"/></route>
@@ -36,21 +28,5 @@
 		<route src="6" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
 		<route src="central_router" dst="7" symmetrical="NO"><link_ctn id="10"/></route>
 		<route src="7" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="8" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="8" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="9" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="9" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="10" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="10" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="11" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="11" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="12" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="12" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="13" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="13" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="14" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="14" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="central_router" dst="15" symmetrical="NO"><link_ctn id="10"/></route>
-		<route src="15" dst="central_router" symmetrical="NO"><link_ctn id="10"/></route>
 	</AS>
 </platform>

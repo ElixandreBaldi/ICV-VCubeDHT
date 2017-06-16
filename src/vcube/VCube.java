@@ -22,7 +22,7 @@ public class VCube {
     /**
      * @param args the command line arguments
      */
-    public static final int QTDNODOS = 16;
+    public static final int QTDNODOS = 8;
     public static void criarPlatform() throws IOException{        
         FileWriter fileW = new FileWriter ("platform.xml");//arquivo para escrita
         BufferedWriter buffW = new BufferedWriter (fileW);
@@ -57,8 +57,28 @@ public class VCube {
         texto+="<?xml version='1.0'?>\n" +
                 "<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n" +
                 "<platform version=\"4\">\n";
-        for(int i = 0; i < QTDNODOS; i++) {
-            texto+="	<process host=\""+i+"\" start_time=\"0\" function=\"vcube.Node\">\n" +
+        int teste = 0;
+        for(int i = 0; i < QTDNODOS; i++) {            
+            if(i == QTDNODOS/2)
+                teste++;
+            else if(i == QTDNODOS/4)
+                teste++;
+            else if(i == QTDNODOS/8)
+                teste++;
+            else if(i == QTDNODOS/16)
+                teste++;
+            else if(i == QTDNODOS/32)
+                teste++;
+            else if(i == QTDNODOS/64)
+                teste++;
+            else if(i == QTDNODOS/128)
+                teste++;
+            else if(i == QTDNODOS/256)
+                teste++;
+            else if(i == QTDNODOS/512)
+                teste++;
+            
+            texto+="	<process host=\""+i+"\" start_time=\""+teste+"\" function=\"vcube.Node\">\n" +
                     "		<argument value=\""+i+"\"/>		       \n";
             if(i == 47 || i == 114){
                 texto+="		<argument value=\"texto para simulaçao\"/>\n";

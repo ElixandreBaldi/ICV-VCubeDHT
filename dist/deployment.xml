@@ -1,0 +1,52 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">
+	<process host="0" start_time="0" function="vcube.Node">
+		<argument value="0"/>		       
+	</process>
+	<process host="1" start_time="0" function="vcube.Node">
+		<argument value="1"/>		       
+	</process>
+	<process host="2" start_time="0" function="vcube.Node">
+		<argument value="2"/>		       
+	</process>
+	<process host="3" start_time="0" function="vcube.Node">
+		<argument value="3"/>		       
+	</process>
+	<process host="4" start_time="0" function="vcube.Node">
+		<argument value="4"/>		       
+	</process>
+	<process host="5" start_time="0" function="vcube.Node">
+		<argument value="5"/>		       
+	</process>
+	<process host="6" start_time="0" function="vcube.Node">
+		<argument value="6"/>		       
+	</process>
+	<process host="7" start_time="0" function="vcube.Node">
+		<argument value="7"/>		       
+	</process>
+	<process host="8" start_time="0" function="vcube.Node">
+		<argument value="8"/>		       
+	</process>
+	<process host="9" start_time="0" function="vcube.Node">
+		<argument value="9"/>		       
+	</process>
+	<process host="10" start_time="0" function="vcube.Node">
+		<argument value="10"/>		       
+	</process>
+	<process host="11" start_time="0" function="vcube.Node">
+		<argument value="11"/>		       
+	</process>
+	<process host="12" start_time="0" function="vcube.Node">
+		<argument value="12"/>		       
+	</process>
+	<process host="13" start_time="0" function="vcube.Node">
+		<argument value="13"/>		       
+	</process>
+	<process host="14" start_time="0" function="vcube.Node">
+		<argument value="14"/>		       
+	</process>
+	<process host="15" start_time="0" function="vcube.Node">
+		<argument value="15"/>		       
+	</process>
+</platform>

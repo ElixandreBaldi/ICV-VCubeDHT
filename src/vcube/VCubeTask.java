@@ -18,7 +18,14 @@ public class VCubeTask extends Task{
     private int pretendente;
     private byte[] hash;
     private String arquivo;
-    private final int QTDNODOS = 16;
+    private final int QTDNODOS = 8;
+    
+    public VCubeTask(String name, double flopsAmount, double bytesAmount){
+        super(name, flopsAmount,bytesAmount);
+        timestemp = new int[QTDNODOS];
+        timestempStatus = new int[QTDNODOS];
+        flagArquivo = false;
+    }
 
     public String getArquivo() {
         return arquivo;
@@ -41,16 +48,6 @@ public class VCubeTask extends Task{
             this.hash[i] = hash[i];
     }
     
-
-     
-    
-
-    public VCubeTask(String name, double flopsAmount, double bytesAmount){
-        super(name, flopsAmount,bytesAmount);
-        timestemp = new int[QTDNODOS];
-        timestempStatus = new int[QTDNODOS];
-        flagArquivo = false;
-    }
     public void imprimirTimestemp(){
         String var = "";
         for(int i = 0; i < timestemp.length; i++){
